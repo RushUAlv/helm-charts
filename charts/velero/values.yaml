@@ -235,7 +235,7 @@ configuration:
     # `configuration.provider` will be used instead.
     provider: velero.io/azure
     # bucket is the name of the bucket to store backups in. Required.
-    bucket: <<STORAGE_ACCOUNT_CONTAINER_NAME>>
+    bucket: velero-backup
     # caCert defines a base64 encoded CA bundle to use when verifying TLS connections to the provider. Optional.
     caCert:
     # prefix is the directory under which all Velero data should be stored within the bucket. Optional.
@@ -252,10 +252,10 @@ configuration:
     #  s3ForcePathStyle:
     #  s3Url:
     #  kmsKeyId:
-      resourceGroup: <<BACKUP_RESOURCE_GROUP>>
+      resourceGroup: roman-velero
     #  The ID of the subscription containing the storage account, if different from the cluster’s subscription. (Azure only)
-      subscriptionId: <<SUBSCRIPTION_ID>>
-      storageAccount: <<STORAGE_ACCOUNT_NAME>>
+      subscriptionId: WBG AZ ITSSM xLab
+      storageAccount: romanvelero
     #  publicUrl:
     #  Name of the GCP service account to use for this backup storage location. Specify the
     #  service account here if you want to use workload identity instead of providing the key file.(GCP only)
@@ -277,9 +277,9 @@ configuration:
     config: {}
   #    region:
   #    apiTimeout:
-      resourceGroup: <<BACKUP_RESOURCE_GROUP>>
+      resourceGroup: roman-velero
   #    The ID of the subscription where volume snapshots should be stored, if different from the cluster’s subscription. If specified, also requires `configuration.volumeSnapshotLocation.config.resourceGroup`to be set. (Azure only)
-      subscriptionId: <<SUBSCRIPTION_ID>>
+      subscriptionId: WBG AZ ITSSM xLab
   #    incremental:
   #    snapshotLocation:
   #    project:
