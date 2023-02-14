@@ -52,12 +52,12 @@ dnsPolicy: ClusterFirst
 # Init containers to add to the Velero deployment's pod spec. At least one plugin provider image is required.
 # If the value is a string then it is evaluated as a template.
 initContainers:
-  # - name: velero-plugin-for-csi
-  #   image: velero/velero-plugin-for-csi:v0.3.2
-  #   imagePullPolicy: IfNotPresent
-  #   volumeMounts:
-  #     - mountPath: /target
-  #       name: plugins
+   - name: velero-plugin-for-azure
+     image: velero/velero-plugin-for-microsoft-azure:v1.6.0
+     imagePullPolicy: IfNotPresent
+     volumeMounts:
+       - mountPath: /target
+         name: plugins
   # - name: velero-plugin-for-aws
   #   image: velero/velero-plugin-for-aws:v1.5.2
   #   imagePullPolicy: IfNotPresent
@@ -233,9 +233,9 @@ configuration:
     name:
     # provider is the name for the backup storage location provider. If omitted
     # `configuration.provider` will be used instead.
-    provider:
+    provider: velero.io/azure
     # bucket is the name of the bucket to store backups in. Required.
-    bucket:
+    bucket: <<STORAGE_ACCOUNT_CONTAINER_NAME>>
     # caCert defines a base64 encoded CA bundle to use when verifying TLS connections to the provider. Optional.
     caCert:
     # prefix is the directory under which all Velero data should be stored within the bucket. Optional.
@@ -252,10 +252,10 @@ configuration:
     #  s3ForcePathStyle:
     #  s3Url:
     #  kmsKeyId:
-    #  resourceGroup:
+      resourceGroup: <<BACKUP_RESOURCE_GROUP>>
     #  The ID of the subscription containing the storage account, if different from the cluster’s subscription. (Azure only)
-    #  subscriptionId:
-    #  storageAccount:
+      subscriptionId: <<SUBSCRIPTION_ID>>
+      storageAccount: <<STORAGE_ACCOUNT_NAME>>
     #  publicUrl:
     #  Name of the GCP service account to use for this backup storage location. Specify the
     #  service account here if you want to use workload identity instead of providing the key file.(GCP only)
@@ -277,9 +277,9 @@ configuration:
     config: {}
   #    region:
   #    apiTimeout:
-  #    resourceGroup:
+      resourceGroup: <<BACKUP_RESOURCE_GROUP>>
   #    The ID of the subscription where volume snapshots should be stored, if different from the cluster’s subscription. If specified, also requires `configuration.volumeSnapshotLocation.config.resourceGroup`to be set. (Azure only)
-  #    subscriptionId:
+      subscriptionId: <<SUBSCRIPTION_ID>>
   #    incremental:
   #    snapshotLocation:
   #    project:
@@ -290,7 +290,7 @@ configuration:
   # comments below.
   # --------------------
   # `velero server` default: restic
-  uploaderType:
+  uploaderType: restic
   # `velero server` default: 1m
   backupSyncPeriod:
   # `velero server` default: 4h
@@ -490,6 +490,14 @@ nodeAgent:
 #       ttl: "240h"
 #       includedNamespaces:
 #       - foo
+schedules:
+  mybackup:
+    disabled: false
+    schedule: "0 1 * * *"
+    template:
+      ttl: "120h"
+      includedNamespaces:
+      - argocd velero webapp
 schedules: {}
 
 # Velero ConfigMaps.
