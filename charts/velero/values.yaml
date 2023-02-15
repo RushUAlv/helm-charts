@@ -6,7 +6,7 @@
 # enabling node-agent). Required.
 image:
   repository: velero/velero
-  tag: v1.10.0
+  tag: v1.10.1
   # Digest value example: sha256:d238835e151cec91c6a811fe3a89a66d3231d9f64d09e5f3c49552672d271f38.
   # If used, it will take precedence over the image.tag.
   # digest:
@@ -254,7 +254,7 @@ configuration:
     #  kmsKeyId:
       resourceGroup: roman-velero
     #  The ID of the subscription containing the storage account, if different from the cluster’s subscription. (Azure only)
-      subscriptionId: WBG AZ ITSSM xLab
+      subscriptionId: 64c555a9-193a-4e08-af9d-daaa32034faa
       storageAccount: romanvelero
     #  publicUrl:
     #  Name of the GCP service account to use for this backup storage location. Specify the
@@ -279,7 +279,7 @@ configuration:
   #    apiTimeout:
       resourceGroup: roman-velero
   #    The ID of the subscription where volume snapshots should be stored, if different from the cluster’s subscription. If specified, also requires `configuration.volumeSnapshotLocation.config.resourceGroup`to be set. (Azure only)
-      subscriptionId: WBG AZ ITSSM xLab
+      subscriptionId: 64c555a9-193a-4e08-af9d-daaa32034faa
   #    incremental:
   #    snapshotLocation:
   #    project:
