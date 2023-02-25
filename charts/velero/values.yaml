@@ -248,14 +248,14 @@ configuration:
     # Additional provider-specific configuration. See link above
     # for details of required/optional fields for your provider.
     config: {}
-    #  region:
-    #  s3ForcePathStyle:
-    #  s3Url:
-    #  kmsKeyId:
-      resourceGroup: roman-velero
+       region: EastUS
+       s3ForcePathStyle: false
+    #  s3Url: 
+       kmsKeyId: 5EUteD2Wp5Sz0Skg8w2l8GTSUqSdwcnnt+Ztpfwu6EkGezVBWTAv2I+N7c2GrKEnu94Bnm9FFMeQ+AStdZUkiw==
+       resourceGroup: Roman_Velero
     #  The ID of the subscription containing the storage account, if different from the cluster’s subscription. (Azure only)
-      subscriptionId: 64c555a9-193a-4e08-af9d-daaa32034faa
-      storageAccount: romanvelero
+       subscriptionId: 64c555a9-193a-4e08-af9d-daaa32034faa
+       storageAccount: velerof0131a76c341
     #  publicUrl:
     #  Name of the GCP service account to use for this backup storage location. Specify the
     #  service account here if you want to use workload identity instead of providing the key file.(GCP only)
@@ -277,7 +277,7 @@ configuration:
     config: {}
   #    region:
   #    apiTimeout:
-      resourceGroup: roman-velero
+      resourceGroup: Roman_Velero
   #    The ID of the subscription where volume snapshots should be stored, if different from the cluster’s subscription. If specified, also requires `configuration.volumeSnapshotLocation.config.resourceGroup`to be set. (Azure only)
       subscriptionId: 64c555a9-193a-4e08-af9d-daaa32034faa
   #    incremental:
@@ -490,14 +490,14 @@ nodeAgent:
 #       ttl: "240h"
 #       includedNamespaces:
 #       - foo
-schedules:
-  mybackup:
-    disabled: false
-    schedule: "0 1 * * *"
-    template:
-      ttl: "120h"
-      includedNamespaces:
-      - argocd velero webapp
+#schedules:
+#  mybackup:
+#    disabled: false
+#    schedule: "0 1 * * *"
+#    template:
+#      ttl: "120h"
+#      includedNamespaces:
+#      - argocd velero webapp
 schedules: {}
 
 # Velero ConfigMaps.
